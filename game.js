@@ -28,7 +28,7 @@ class Player {
 
 class Monster {
     constructor(stage) {
-        this.hp = stage * Math.floor(Math.random() * (40 - 25) + 25);
+        this.hp = stage * Math.floor(Math.random() * (17 - 12) + 12);
         this.monsterPlusAttack = stage * (Math.floor(Math.random() * (4 - 2) + 2));
         this.mAttackMax = 5 + this.monsterPlusAttack;
         this.mAttackMin = 2 + this.monsterPlusAttack;
@@ -125,7 +125,7 @@ const battle = async (stage, player, monster) => {
         }
         // 몬스터 체력이 0이면 다음 스테이지로
         if (monster.hp <= 0) {
-            player.hp += Math.floor(Math.random() * (60 - 40) + 40);
+            player.hp += Math.floor(Math.random() * (64 - 42) + 42);
             break;
         }
     }
@@ -142,7 +142,7 @@ export async function startGame() {
         await battle(stage, player, monster);
 
         // 스테이지 클리어 및 게임 종료 조건
-        player.playerPlusAttack = Math.floor(Math.random() * (5 - 3) + 3);
+        player.playerPlusAttack = Math.floor(Math.random() * (6 - 3) + 3);
         player.pAttackMax += player.playerPlusAttack;
         player.pAttackMin += player.playerPlusAttack;
         stage++;
@@ -151,7 +151,7 @@ export async function startGame() {
             break;
         }
     }
-    if( stage >= 13 ){
+    if( stage >= 13 && player.hp > 0){
         console.log(chalk.cyan("클리어를 축하드립니다!!!"));
     }
 }
